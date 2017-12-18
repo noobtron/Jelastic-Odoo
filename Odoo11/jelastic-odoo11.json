@@ -48,17 +48,36 @@
           "ssl": true
         }
       },
-      "onInstall": [{
-        "executeScript": {
-          "type": "js",
-          "script": "https://raw.githubusercontent.com/noobtron/Jelastic-Odoo/master/Odoo11/addEndPoints.js",
-          "params": {
-            "nodeGroup": "cp",
-            "name": "odooerp",
-            "port": "8069"
+      "onInstall": 
+      [
+        {
+          "executeShellCommands": 
+          {
+            "nodeGroup": "cp", 
+            "commands": 
+            [
+                "sudo sed -i s/\"; admin_passwd.*\"/\"admin_passwd = ${globals.password}\"/g /etc/odoo/odoo.conf",
+                "echo  \"db_host = $DB_HOST\" >> /etc/odoo/odoo.conf",
+                "echo  \"db_port = $DB_PORT\" >> /etc/odoo/odoo.conf",
+                "echo  \"db_password = $DB_ENV_POSTGRES_PASSWORD\" >> /etc/odoo/odoo.conf",
+                "echo  \"db_user = $DB_ENV_POSTGRES_USER\" >> /etc/odoo/odoo.conf",
+                "service odoo restart",
+                "sleep 3m"
+            ]
+          }
+        },{
+          "executeScript":
+          {
+            "type": "js",
+            "script": "https://raw.githubusercontent.com/noobtron/Jelastic-Odoo/master/Odoo11/addEndPoints.js",
+            "params": {
+              "nodeGroup": "cp",
+              "name": "odooerp",
+              "port": "8069"
+            }
           }
         }
-      }],
+      ],
       "success": {
         "text": "postgres user: odoo</br>postgres user password: ${user.appPassword}",
         "email": "postgres user: odoo</br>postgres user password: ${user.appPassword}"

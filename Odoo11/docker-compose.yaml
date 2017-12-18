@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:9.4
+    deploy:
+      replicas: 1
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data:rw,Z
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoopwd
+  odoo:
+    image: odoo:11.0
+    deploy:
+      replicas: 3
+    volumes:
+      - odoo_data:/var/lib/odoo:rw,Z
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoopwd
+    ports:
+      - "8069"
+
+volumes:
+  pgsql_data:
+  odoo_data:
