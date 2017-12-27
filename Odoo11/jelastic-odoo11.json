@@ -23,7 +23,22 @@
                 "image": "postgres:9.4",
                 "env": {
                   "name": "db",
-                  "POSTGRES_USER": "odoo",
+                  "POSTGRES_USER": "db-odoo",
+                  "POSTGRES_PASSWORD": "${globals.password}"
+                }
+              }
+            },
+            {
+              "nodeType": "docker",
+              "fixedCloudlets": 1,
+              "flexibleCloudlets": 16,
+              "displayName": "Odoo - postgres database",
+              "nodeGroup": "sqldb",
+              "docker": {
+                "image": "postgres:9.4",
+                "env": {
+                  "name": "db",
+                  "POSTGRES_USER": "db-odoo",
                   "POSTGRES_PASSWORD": "${globals.password}"
                 }
               }
@@ -39,7 +54,7 @@
                 "links": "sqldb:db",
                 "env": {
                   "name": "odoo",
-                  "DB_ENV_POSTGRES_USER": "odoo",
+                  "DB_ENV_POSTGRES_USER": "db-odoo",
                   "DB_ENV_POSTGRES_PASSWORD": "${globals.password}"
                 }
               }
@@ -79,8 +94,8 @@
         }
       ],
       "success": {
-        "text": "postgres user: odoo</br>postgres user password: ${user.appPassword}",
-        "email": "postgres user: odoo</br>postgres user password: ${user.appPassword}"
+        "text": "postgres user: odoo</br>postgres user password: ${globals.password}",
+        "email": "postgres user: odoo</br>postgres user password: ${globals.password}"
       },
       "globals": {
         "password": "${user.appPassword}"
