@@ -18,7 +18,7 @@
               "fixedCloudlets": 1,
               "flexibleCloudlets": 16,
               "displayName": "Odoo - lb",
-              "nodeGroup": "lb",
+              "nodeGroup": "bl",
               "docker": {
                 "image": "jelastic/nginxbalancer:1.10.1",
                 "env": {
@@ -93,8 +93,8 @@
         }
       ],
       "success": {
-        "text": "postgres user: odoo</br>postgres user password: ${globals.password}",
-        "email": "postgres user: odoo</br>postgres user password: ${globals.password}"
+        "text": "postgres user: odoo</br>admin user password: ${globals.password}",
+        "email": "postgres user: odoo</br>admin user password: ${globals.password}"
       },
       "globals": {
         "password": "${user.appPassword}"
