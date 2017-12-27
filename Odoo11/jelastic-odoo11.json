@@ -46,8 +46,8 @@
                 "links": "sqldb:db",
                 "env": {
                   "name": "odoo",
-                  "POSTGRES_USER": "db-odoo",
-                  "POSTGRES_PASSWORD": "${globals.password}"
+                  "DB_ENV_POSTGRES_USER": "db-odoo",
+                  "DB_ENV_POSTGRES_PASSWORD": "${globals.password}"
                 }
               }
             }
