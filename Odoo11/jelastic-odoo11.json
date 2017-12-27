@@ -14,17 +14,11 @@
         "topology": {
           "nodes": [
             {
-              "nodeType": "docker",
+              "nodeType": "nginx",
               "fixedCloudlets": 1,
               "flexibleCloudlets": 16,
               "displayName": "Odoo - lb",
-              "nodeGroup": "bl",
-              "docker": {
-                "image": "jelastic/nginxbalancer:1.10.1",
-                "env": {
-                  "name": "lb"
-                }
-              }
+              "nodeGroup": "bl"
             },
             {
               "nodeType": "docker",
